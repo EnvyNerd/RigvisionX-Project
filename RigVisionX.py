@@ -13,7 +13,7 @@ def load_model():
 model = load_model()
 
 # Streamlit UI
-st.title("RigVisionX: Oil Production Prediction")
+st.title("Reservoir Oil Production Prediction")
 st.markdown("Enter reservoir properties to predict oil production.")
 
 # Sidebar for user inputs
@@ -64,6 +64,34 @@ if st.button("Predict Oil Production"):
         ax.set_xlabel("Feature Importance")
         ax.set_title("Model Feature Contributions")
         st.pyplot(fig)
+    
+    # Interactive 3D Reservoir Visualization
+    x = np.random.uniform(0, 100, 100)
+    y = np.random.uniform(0, 100, 100)
+    z = np.random.uniform(0, 50, 100)
+    permeability_values = np.random.uniform(0.1, 1000, 100)
+    
+    fig_3d = go.Figure(data=[go.Scatter3d(
+        x=x, y=y, z=z, mode='markers',
+        marker=dict(
+            size=5,
+            color=permeability_values,
+            colorscale='Viridis',
+            opacity=0.8,
+            colorbar=dict(title="Permeability (mD)")
+        )
+    )])
+    
+    fig_3d.update_layout(
+        title="3D Reservoir Permeability Distribution",
+        scene=dict(
+            xaxis_title="X Position",
+            yaxis_title="Y Position",
+            zaxis_title="Depth"
+        )
+    )
+    
+    st.plotly_chart(fig_3d)
 
 st.write("---")
-st.write("Developed by Witschi Mihan 🚀")
+st.write("Developed by Reservoir ML Team 🚀")
