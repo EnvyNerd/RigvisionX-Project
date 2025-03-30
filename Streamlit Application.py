@@ -8,7 +8,7 @@ from sklearn.ensemble import RandomForestRegressor
 # Load trained model
 @st.cache_resource
 def load_model():
-    return joblib.load("c:/Users/Witschi.M/Documents/Python/best_rf_model.pkl")
+    return joblib.load("best_rf_model.pkl")
 
 model = load_model()
 
