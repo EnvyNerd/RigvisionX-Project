@@ -13,7 +13,7 @@ def load_model():
 model = load_model()
 
 # Streamlit UI
-st.title("RigVisionX Oil Production Prediction")
+st.title("RigVisionX: Oil Production Prediction")
 st.markdown("Enter reservoir properties to predict oil production.")
 
 # Sidebar for user inputs
@@ -42,9 +42,9 @@ if st.button("Predict Oil Production"):
     st.success(f"Predicted Oil Production: {prediction:.2f} barrels/day")
     st.write(f"This is **{feedback}** compared to the industry benchmark of {avg_production} barrels/day.")
     
-    # Generate visualization
-    perm_values = np.linspace(0.1, 1000, 50)
-    pressure_values = np.linspace(1000, 5000, 50)
+    # Generate updated visualization based on user input
+    perm_values = np.linspace(permeability * 0.5, permeability * 1.5, 50)
+    pressure_values = np.linspace(pressure * 0.8, pressure * 1.2, 50)
     predictions = [model.predict([[porosity, p, pr, water_saturation, (p * A * (pr - bottomhole_pressure)) / (mu * L)]])[0] for p, pr in zip(perm_values, pressure_values)]
     
     fig, ax = plt.subplots()
@@ -66,4 +66,4 @@ if st.button("Predict Oil Production"):
         st.pyplot(fig)
 
 st.write("---")
-st.write("Developed by Witschi.Mihan 🚀")
+st.write("Developed by Witschi Mihan 🚀")
