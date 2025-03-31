@@ -131,7 +131,7 @@ if st.button("Predict Oil Production"):
             yaxis_title="Y Position",
             zaxis_title="Depth"
         ),
-        margin=dict(l=50, r=50, t=50, l=50)
+        margin=dict(l=50, r=50, t=50, b=50)
     )
     
     st.plotly_chart(fig_3d)
